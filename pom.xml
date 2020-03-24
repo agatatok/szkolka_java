@@ -8,5 +8,39 @@
     <artifactId>szkolka_java</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- docs https://github.com/netmikey/logunit -->
+        <!-- https://mvnrepository.com/artifact/io.github.netmikey.logunit/logunit-core -->
+        <dependency>
+            <groupId>io.github.netmikey.logunit</groupId>
+            <artifactId>logunit-core</artifactId>
+            <version>1.1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.netmikey.logunit/logunit-jul -->
+        <dependency>
+            <groupId>io.github.netmikey.logunit</groupId>
+            <artifactId>logunit-jul</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+    </dependencies>
 
 </project>
