@@ -14,8 +14,10 @@ public class Krok1 {
 
 //    W klasie utwórz metodę public static void hello(String name) logującą "Hello, !"
 //    Zadeklaruj logger w klasie Użyj logger w metodzie
-    public static void hello(String name) {
-        LOG.log(Level.INFO, String.format("Hello, %s!%n", name));
+
+
+    public static void hello(String name){
+        LOG.log(Level.INFO, String.format("Hello, %s!", name));
     }
 
 
