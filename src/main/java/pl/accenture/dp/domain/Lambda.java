@@ -1,19 +1,36 @@
 package pl.accenture.dp.domain;
 
+import lombok.ToString;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Lambda {
     public static void main(String[] args) {
 
-        List<String> aList = Arrays.asList("a21","a2","a13","a4","b10","b2","c13","c4");
+        List<Person> people = List.of(
+                new Person("Bogdan"),
+                new Person("Ala"),
+                new Person("Barbara"),
+                new Person("Zbyszek")
+        );
 
-        aList
+        var collect = people
                 .stream()
-                .filter(s -> s.startsWith("b"))
-                .map(s -> s.toUpperCase())
-                .sorted()
-                .forEach(s->System.out.println(s));
-
+                .filter(Person.imieZaczynaSieNaBPredicate)
+                //.forEach(System.out::println);
+                .collect(Collectors.toList());
     }
+}
+
+@ToString
+class Person {
+    String name;
+    public Person(String name){
+        this.name = name;
+    }
+    static Predicate<Person> imieZaczynaSieNaBPredicate = p -> p.name.startsWith("B");
+
 }
