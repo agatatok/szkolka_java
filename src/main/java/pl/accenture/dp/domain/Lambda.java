@@ -2,35 +2,45 @@ package pl.accenture.dp.domain;
 
 import lombok.ToString;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
+
+import static pl.accenture.dp.domain.Person.*;
 
 public class Lambda {
     public static void main(String[] args) {
 
-        List<Person> people = List.of(
-                new Person("Bogdan"),
-                new Person("Ala"),
-                new Person("Barbara"),
-                new Person("Zbyszek")
+        List<Person> ludzie = List.of(
+                new Person("Anna", "Barańska", 30),
+                new Person("Andrzej", "Nowak", 21),
+                new Person("Jan", "Baran", 15),
+                new Person("Alicja", "Bobrowska", 24),
+                new Person("Alojzy", "Bór", 18),
+                new Person("Jacek", "Placek", 24),
+                new Person("Ignacy", "Kowalski", 50)
         );
 
-        var collect = people
+        ludzie
                 .stream()
-                .filter(Person.imieZaczynaSieNaBPredicate)
-                //.forEach(System.out::println);
-                .collect(Collectors.toList());
+                .filter(imieZaczynaSieNaAPredicate.and(nazwiskoZaczynaSieNaBPredicate).and(wiekPowyzej20Lat))
+                .forEach(System.out::println);
     }
 }
 
 @ToString
 class Person {
-    String name;
-    public Person(String name){
-        this.name = name;
+    String firstName;
+    String lastName;
+    int age;
+
+    public Person(String name, String lastName, int age) {
+        this.firstName = name;
+        this.lastName = lastName;
+        this.age = age;
     }
-    static Predicate<Person> imieZaczynaSieNaBPredicate = p -> p.name.startsWith("B");
+
+    static Predicate<Person> imieZaczynaSieNaAPredicate = p -> p.firstName.toUpperCase().startsWith("A");
+    static Predicate<Person> nazwiskoZaczynaSieNaBPredicate = p -> p.lastName.toUpperCase().startsWith("B");
+    static Predicate<Person> wiekPowyzej20Lat = p -> p.age>20;
 
 }
