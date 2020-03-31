@@ -3,9 +3,9 @@ package pl.accenture.dp.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static pl.accenture.dp.domain.Person.posortujPoMiescie;
 import static pl.accenture.dp.domain.Person.posortujPoNazwisku;
@@ -58,7 +58,7 @@ public class Lambda {
 
         listaDoSplaszczenia
                 .stream()
-                .flatMap(x -> x.stream())
+                .flatMap(Collection::stream)
                 .sorted()
                 .forEach(System.out::println);
     }
